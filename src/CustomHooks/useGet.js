@@ -7,7 +7,9 @@ const useGet = (url) => {
     
     const getData = async () => {
         setLoading(true);
-        const response  = await axios.get(url).catch((err) => {
+        const getUrl = `https://rocky-bastion-69611.herokuapp.com/${url}`;
+        console.log(getUrl);
+        const response  = await axios.get(getUrl).catch((err) => {
             console.log('Error is : ', err);
         });
         setGotData(response.data);
@@ -16,7 +18,7 @@ const useGet = (url) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [url]);
 
     return {gotData, loading};
 };

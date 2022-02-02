@@ -5,10 +5,10 @@ import Card from '../ProductCard/Card';
 
 const NewProducts = () => {
     // Import data from the customhooks
-    const { loading, gotData } = useGet('../products.json');
+    const { loading, gotData } = useGet('products');
     return (
         <Grid container spacing={2}>
-            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data.id} data={data} col={3} />)}</>}
+            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data._id} data={data} col={3} />)}</>}
         </Grid>
     );
 };

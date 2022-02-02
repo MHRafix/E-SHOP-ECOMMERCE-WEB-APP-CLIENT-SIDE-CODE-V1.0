@@ -23,6 +23,9 @@ body {
   --btn-bg: #a749ff;
   --sub-text: #666666;
   --card-bg: #f6f6f6;
+  --primary-c: #2196f3;
+  --secondary-c: #b2d7f5;
+  --bg: var(--primary-c);
 }
 
 /* Home slider css */
@@ -139,7 +142,7 @@ button.cartBtn {
   color: var(--white-color);
   width: 50%;
   font-size: 17px;
-  height: 44.5px;
+  height: 44.4px;
   border: none;
   border-left: 1px solid rgb(207, 207, 207);
   border-right: 1px solid rgb(207, 207, 207);
@@ -158,7 +161,7 @@ button.cartBtn:hover {
 .buttons {
   position: absolute;
   bottom: 8px;
-  left: 3px;
+  left: 0px;
   display: none;
 }
 
