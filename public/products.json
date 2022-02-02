@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/6.jpg"
+  },
+  {
+    "id": 2,
+    "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/20.jpg"
+  },
+  {
+    "id": 3,
+    "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/8.jpg"
+  },
+  {
+    "id": 4,
+    "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/2.jpg"
+  },
+  {
+    "id": 5,
+    "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+  }
+]
