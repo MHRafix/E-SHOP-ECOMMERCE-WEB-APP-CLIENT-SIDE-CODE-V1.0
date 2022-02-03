@@ -142,7 +142,7 @@ button.cartBtn {
   color: var(--white-color);
   width: 50%;
   font-size: 17px;
-  height: 44.4px;
+  height: 45px;
   border: none;
   border-left: 1px solid rgb(207, 207, 207);
   border-right: 1px solid rgb(207, 207, 207);
@@ -224,7 +224,7 @@ a.titleLink:hover {
 
 /* Shop topbar search area css here */
 input#shopTopBarSearchInput {
-  width: 80%;
+  width: 98%;
   padding: 10px 5px;
   font-size: 18px;
   font-family: "Poppins";
@@ -245,4 +245,40 @@ h1.errMssg {
 .errorMessage {
   margin: auto;
   padding: 100px 0px;
+}
+
+/* Filtering products by prices */
+button.priceFilterBtn {
+  padding: 5px 10px;
+  background: var(--btn-bg);
+  border: none;
+  color: var(--white-color);
+  font-size: 18px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  border-radius: 41px;
+  font-weight: 300;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.priceFilterBtn2 {
+  padding: 5px 10px;
+  background: #e6a9f1;
+  border: none;
+  color: var(--white-color);
+  font-size: 18px;
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  border-radius: 41px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+input.pricesField {
+  padding: 8px 10px;
+  width: 95%;
+  margin: 5px 0px;
+  border: 1px solid #cdc1c1;
+  font-size: 18px;
 }

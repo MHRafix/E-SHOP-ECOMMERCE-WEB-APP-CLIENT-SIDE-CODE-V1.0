@@ -13,13 +13,24 @@ const Card = ({ data, col }) => {
   useAnimation();
 
   // Let's destucturing the product data from the data object
-  const { id, thumbnail } = data;
-
+  const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
+  } = data;
+  
+  // Let's calculat the average rating and reviews here
+  let averageRating = 0;
+  if(ratingsandreviews){
+    for(const ratAndRev of ratingsandreviews){
+      let {ratting} = ratAndRev;
+      averageRating = averageRating + ratting;
+    }
+  }
     return (
       <Grid item mb={4} xs={6} md={col} data-aos="fade-up">
             <div className="productWrapper">
               <div className="productImage">
-                <span className="saleBadge">SALE!</span>
+                {salePrice && <span className="saleBadge">-{
+                  Math.ceil(((regularPrice - salePrice) / (regularPrice / 100)))
+                }%</span>}
                   <img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" />
               </div>
               <div className="buttons">
@@ -29,24 +40,24 @@ const Card = ({ data, col }) => {
               </div>
             </div>
               <div className="detals" style={{ marginTop: '20px'}}>
-                <Link className="titleLink" to={`singleProdcutsHere/${id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
-                  Hello Hudie
+                <Link className="titleLink" to={`singleProdcutsHere/${_id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
+                  {productTitle}
                 </Typography></Link>
                 <span className="rattis" style={{ color: '#ffa900', textAlign: 'center'}}>
                 <Rating
-                  initialRating={3}
+                  initialRating={averageRating / ratingsandreviews.length}
                   emptySymbol={<StarBorderOutlinedIcon />}
                   fullSymbol={<StarIcon />}
                   readonly
                 />
-                </span>
+                </span>({ratingsandreviews.length})
                 <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px'}}>
                   <span className="activePrice">
-                    $75.00 
+                    ${salePrice} 
                   </span>&nbsp;
                   <span>-</span>&nbsp;
                   <span className="deactivePrice">
-                    $100.00
+                    ${regularPrice}
                   </span>
                 </Typography>
               </div>

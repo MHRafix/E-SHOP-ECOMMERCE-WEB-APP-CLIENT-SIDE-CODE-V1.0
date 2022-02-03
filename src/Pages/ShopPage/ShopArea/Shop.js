@@ -13,7 +13,7 @@ const Shop = () => {
     const [ dependency, setDependency ] = useState('products');
     const [ layout, setLayout ] = useState(4);
     const { loading, gotData } = useGet(dependency);
-
+    
     // Set layout btn color
     let layout1Color = '#444';
     let layout2Color = '#444';
@@ -38,42 +38,59 @@ const Shop = () => {
         <section>
             <Container>
                 <Grid container spacing={2} sx={{marginTop: 3}}>
-                    <Grid item md={2} xs={12} >
-                        <Sidebar dpend={setDependency}/>
+                    <Grid item md={3} xs={12} >
+                        <Sidebar dpend={setDependency} dependency={dependency} />
                     </Grid>
-                    <Grid item md={10} xs={12}>
+                    <Grid item md={9} xs={12}>
                         <div className="shopTopBar">
                             <Grid container mb={5}>
-                                <Grid item md={3} xs={12}  mb={2} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '15px'}}>
+                                <Grid item md={3} xs={12}  mb={2} sx={{display: 'flex', justifyContent: {xs: 'start', md: 'center'}, alignItems: 'center', paddingTop: '15px'}}>
                                     <Typography
-                                    sx={{color: '#444', fontFamily: 'Poppins', fontWeight: 500, textAlign: 'center'}}
-                                    >Showing 1 to 7 of {gotData.length} result</Typography>
+                                    sx={{color: '#444', fontFamily: 'Poppins', fontWeight: 500, textAlign: {xs: 'left', md: 'center'},marginLeft: {xs: '10px', md: '0px'}}}
+                                    >Showing {gotData.length} products</Typography>
                                 </Grid>
                                 <Grid item md={9} xs={12} sx={{ textAlign: 'center'}} >
-                                    <Grid container>
-                                        <Grid item md={10} xs={9}>
-                                        <input
-                                          type='search' 
-                                          id='shopTopBarSearchInput'
-                                          placeholder='Search by products name...'
-                                        />
-                                        </Grid>
-                                        <Grid item md={2} xs={3} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                         <GridViewIcon sx={{fontSize: 25, border: `1px solid ${layout2Color}`, cursor: 'pointer', color: `${layout2Color}`}} onClick={() => setLayout(6)} />
-                                         <CalendarViewMonthOutlinedIcon sx={{fontSize: 25, border: `1px solid ${layout1Color}`, cursor: 'pointer', color: `${layout1Color}`}} onClick={() => setLayout(4)} />
-                                         <ViewComfyOutlinedIcon sx={{fontSize: 25, border: `1px solid ${layout3Color}`, cursor: 'pointer', color: `${layout3Color}`}} onClick={() => setLayout(3)} />
-                                        </Grid>
+                                <Grid container>
+                                    <Grid item md={10} xs={12}>
+                                    <input
+                                      type='search' 
+                                      id='shopTopBarSearchInput'
+                                      placeholder='Search by products name...'
+                                    />
                                     </Grid>
+                                    <Grid
+                                     item 
+                                     md={2} 
+                                     sx={{
+                                        display: { xs: 'none', md: 'flex' },
+                                        justifyContent: 'space-between', alignItems: 'center'
+                                     }}>
+                                     <GridViewIcon sx={{fontSize: 25, border: `1px solid ${layout2Color}`, cursor: 'pointer', color: `${layout2Color}`}} onClick={() => setLayout(6)} />
+                                     <CalendarViewMonthOutlinedIcon sx={{fontSize: 25, border: `1px solid ${layout1Color}`, cursor: 'pointer', color: `${layout1Color}`}} onClick={() => setLayout(4)} />
+                                     <ViewComfyOutlinedIcon sx={{fontSize: 25, border: `1px solid ${layout3Color}`, cursor: 'pointer', color: `${layout3Color}`}} onClick={() => setLayout(3)} />
+                                    </Grid>
+                                   </Grid>
                                 </Grid>
                             </Grid>
                         </div>
-                      <Grid container spacing={2}>
-                      {loading ? <CircularProgress size={40} sx={{ textAlign: 'center', margin: 'auto'}} mt={5} color="secondary" /> : <>
-                      {gotData.length ? <>{gotData.map(data => <Card key={data._id} data={data} col={layout} />)}</>: <div className="errorMessage">
-                            <img src={ErrImage} width='200' height='200' alt="errImage" className="errImg" />
-                            <h1 className="errMssg">No Products Matched...!</h1>
-                          </div>}
-                      </>}
+                      <Grid 
+                       container 
+                       spacing={2}>
+                        {loading ? <CircularProgress 
+                        size={40} 
+                        sx={{ textAlign: 'center', 
+                        margin: 'auto'
+                        }} 
+                        mt={5} 
+                        color="secondary" 
+                        /> : <>
+                        {gotData.length ? <>
+                        {gotData.map(data => <Card key={data._id} data={data} col={layout} />)}
+                        </>: <div className="errorMessage">
+                                <img src={ErrImage} width='200' height='200' alt="errImage" className="errImg" />
+                                <h1 className="errMssg">No Products Matched...!</h1>
+                            </div>}
+                        </>}
                       </Grid>
                     </Grid>
                 </Grid>
