@@ -1,4 +1,4 @@
-import { Breadcrumbs, Container } from '@mui/material';
+import { Breadcrumbs } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ const BreadCrumb = ({breadcrumbNavigation}) => {
     return (
         <section>
             <div className="breadCrumbArea">
-               <Container>
+             <div className="breadcrumbNavigation">
                  <Breadcrumbs aria-label="breadcrumb" style={{textAlign: 'center', justifyContent: 'center'}}>
                   <Link to='/' style={{ color: '#555', textDecoration: 'none', fontFamily: 'Poppins', fontWeight: 400, fontSize: 18 }} >
                    {first}
@@ -25,7 +25,7 @@ const BreadCrumb = ({breadcrumbNavigation}) => {
                     {last}
                     </span>
                 </Breadcrumbs>
-              </Container>
+             </div>
             </div>
         </section>
     );
