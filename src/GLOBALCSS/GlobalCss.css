@@ -282,3 +282,56 @@ input.pricesField {
   border: 1px solid #cdc1c1;
   font-size: 18px;
 }
+
+/* Sinlge product page css here */
+.rattingAndReviws {
+  display: flex; /* align-items: center; */
+}
+
+.actionButtons {
+  margin: 35px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+span.counterBtn {
+  color: #555;
+  cursor: pointer;
+  font-size: 25px;
+  /* margin: 0px 3px; */
+}
+
+span.counterValue {
+  font-size: 25px;
+  color: #555;
+  margin: 0px 10px;
+}
+
+button.addToCartBtn {
+  margin: 0px 30px;
+  width: 150px;
+  height: 45px;
+  font-size: 18px;
+  color: var(--white-color);
+  border: none;
+  background: var(--btn-bg);
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.addToCartBtn:hover {
+  background: var(--black-color);
+}
+
+span.wishAndCompareBtn {
+  color: #555;
+  margin: 0px 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+span.taxonomyItema {
+  color: #555;
+}

@@ -28,7 +28,7 @@ const Card = ({ data, col }) => {
       <Grid item mb={4} xs={6} md={col} data-aos="fade-up">
             <div className="productWrapper">
               <div className="productImage">
-                {salePrice && <span className="saleBadge">-{
+                {salePrice !== '0' && <span className="saleBadge">-{
                   Math.ceil(((regularPrice - salePrice) / (regularPrice / 100)))
                 }%</span>}
                   <img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" />
@@ -40,7 +40,7 @@ const Card = ({ data, col }) => {
               </div>
             </div>
               <div className="detals" style={{ marginTop: '20px'}}>
-                <Link className="titleLink" to={`singleProdcutsHere/${_id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
+                <Link className="titleLink" to={`shop/products/singleProducts/${_id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
                   {productTitle}
                 </Typography></Link>
                 <span className="rattis" style={{ color: '#ffa900', textAlign: 'center'}}>
@@ -50,13 +50,13 @@ const Card = ({ data, col }) => {
                   fullSymbol={<StarIcon />}
                   readonly
                 />
-                </span>({ratingsandreviews.length})
+                </span>
                 <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px'}}>
-                  <span className="activePrice">
+                 {salePrice !== '0' && <><span className="activePrice">
                     ${salePrice} 
                   </span>&nbsp;
-                  <span>-</span>&nbsp;
-                  <span className="deactivePrice">
+                  <span>-</span>&nbsp;</>}
+                  <span className={salePrice !== '0' ? 'deactivePrice' : 'activePrice'}>
                     ${regularPrice}
                   </span>
                 </Typography>
