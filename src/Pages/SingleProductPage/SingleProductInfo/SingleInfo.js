@@ -1,20 +1,13 @@
 import { Container, Grid } from '@mui/material';
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import useGet from '../../../CustomHooks/useGet';
 import BreadCrumb from '../../SharedComponents/BreadCrumb/BreadCrumb';
 import ProductDetails from './ProductDetails/ProductDetails';
 import ProductSlider from './ProductSlider.js/ProductSlider';
 
-const SingleInfo = () => {
-    const breadcrumbNavigation = {first: "Shop", middle: "Single Product", last: "Title"};
-    const { productId } = useParams();
-    
-    // Load data from the server by using dynamic url
-    const dependency = `shop/singleProducts/${productId}`;
-    const { loading, gotData } = useGet(dependency);
-    console.log(gotData);
-    
+const SingleInfo = (props) => {
+  const product = props.data;
+  const { productTitle, thumbnails } = product;
+    const breadcrumbNavigation = {first: "Shop", middle: "Single Product", last: productTitle};
     return (
         <section>
             {/* Single product page bredcrumb here */}
@@ -23,10 +16,10 @@ const SingleInfo = () => {
               <Container>
                 <Grid container spacing={2} sx={{justifyContent: 'space-between'}}>
                     {/* Single product slider here */}
-                    <ProductSlider />
+                    <ProductSlider key="4" slidersThumbnails={thumbnails} />
                     
                     {/* Single product detaild here  */}
-                    <ProductDetails />
+                    <ProductDetails key="1" productDetails={product} />
                 </Grid>
               </Container>
             </section>

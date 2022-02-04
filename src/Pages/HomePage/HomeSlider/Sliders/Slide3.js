@@ -6,14 +6,14 @@ const Slide3 = ({thirdSlide}) => {
     return (
 <>
          {thirdSlide && <Grid container spacing={2}>
-                            <Grid item xs={6}>
+                            <Grid item xs={12} md={6}>
                             <div className="sliderArticle" data-aos="fade-down">
                                 <span className="tagline">Smart Products</span>
                                 <h1 className="Headline">All Hot Fashion <br />Collection Here</h1>
                                 <button className="shopBtn">SHOP NOW</button>
                             </div>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={12} md={6}>
                                 <div className="image" data-aos="fade-up">
                                     <img className="sliderImage" src={Slider3} alt="sliderImage" />
                                 </div>

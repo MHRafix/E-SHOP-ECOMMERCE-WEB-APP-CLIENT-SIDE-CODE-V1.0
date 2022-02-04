@@ -3,17 +3,17 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import { Grid, Typography } from '@mui/material';
+import { CircularProgress, Grid, Typography } from '@mui/material';
 import React from 'react';
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 import useAnimation from '../../../../../CustomHooks/useAnimation';
-const Card = ({ data, col }) => {
+const Card = ({ data, col, handlePost, posting }) => {
   // Import animation here
   useAnimation();
 
   // Let's destucturing the product data from the data object
-  const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
+  const { _id, productTitle, thumbnail, thumbnails, regularPrice, salePrice, category, sizes, ratingsandreviews
   } = data;
   
   // Let's calculat the average rating and reviews here
@@ -24,6 +24,20 @@ const Card = ({ data, col }) => {
       averageRating = averageRating + ratting;
     }
   }
+
+  // Carted product data saved  to the database
+  const cartedProductData = {
+    productTitle: productTitle,
+    thumbnail: thumbnail, 
+    thumbnails: thumbnails,
+    regularPrice: regularPrice, 
+    salePrice: salePrice, 
+    category: category, 
+    sizes: sizes, 
+    ratingsandreviews: ratingsandreviews,
+    quantity: 1
+  };
+  
     return (
       <Grid item mb={4} xs={6} md={col} data-aos="fade-up">
             <div className="productWrapper">
@@ -31,11 +45,13 @@ const Card = ({ data, col }) => {
                 {salePrice !== '0' && <span className="saleBadge">-{
                   Math.ceil(((regularPrice - salePrice) / (regularPrice / 100)))
                 }%</span>}
-                  <img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" />
+                  <Link to={`shop/products/singleProducts/${_id}`}><img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" /></Link>
               </div>
               <div className="buttons">
                 <button className="wishAndView"><FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
-                <button className="cartBtn"><ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
+                <button
+                className="cartBtn"
+                onClick={() => handlePost(cartedProductData, 'addToCartList')}>{posting ? <CircularProgress  color="secondary" /> : <ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} />}</button>
                 <button className="wishAndView"><VisibilityOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
               </div>
             </div>

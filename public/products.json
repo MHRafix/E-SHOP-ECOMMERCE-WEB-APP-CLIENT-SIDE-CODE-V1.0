@@ -1,6 +1,13 @@
 [
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/1.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/1.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Crew ventile coat one",
     "category": "mens",
     "sizes": ["M", "XL", "L"],
@@ -39,6 +46,13 @@
   },
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/1.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Trench winter coat one",
     "category": "ladies",
     "sizes": ["M", "S", "L"],
@@ -78,6 +92,13 @@
 
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/1.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Nice black dress one",
     "category": "digital",
     "sizes": [],
@@ -117,6 +138,13 @@
 
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/1.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Women winter overcoat one",
     "category": "mens",
     "sizes": ["S", "M", "XL", "XL", "L"],
@@ -155,6 +183,13 @@
   },
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/5.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/1.jpg"
+    ],
     "productTitle": "Crew ventile coat two",
     "category": "ladies",
     "sizes": ["S", "M", "XL", "L"],
@@ -193,6 +228,13 @@
   },
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/6.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/6.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Trench winter coat two",
     "category": "mens",
     "sizes": ["M", "XL", "L"],
@@ -231,6 +273,13 @@
   },
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/7.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/7.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Women winter overcoat three",
     "category": "fashion",
     "sizes": ["M", "XL", "L"],
@@ -269,6 +318,13 @@
   },
   {
     "thumbnail": "https://flone-vue.pages.dev/img/product/fashion/8.jpg",
+    "thumbnails": [
+      "https://flone-vue.pages.dev/img/product/fashion/8.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/2.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/3.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/4.jpg",
+      "https://flone-vue.pages.dev/img/product/fashion/5.jpg"
+    ],
     "productTitle": "Winter jacket",
     "category": "mens",
     "sizes": ["M", "XL", "L"],

@@ -5,7 +5,7 @@ import Shop from './ShopArea/Shop';
 
 const ShopMain = () => {
     const navigation = {
-        first: 'Home',
+        first: 'home',
         last: 'Shop'
     };
     return (

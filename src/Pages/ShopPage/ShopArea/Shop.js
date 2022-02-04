@@ -1,9 +1,10 @@
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
-import { CircularProgress, Container, Grid, Typography } from '@mui/material';
+import { Alert, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import useGet from '../../../CustomHooks/useGet';
+import usePost from '../../../CustomHooks/usePost';
 import ErrImage from '../../../Images/ICONS/shopingError.jpg';
 import Card from '../../HomePage/ProductsTab/TabsProducts/ProductCard/Card';
 import Sidebar from '../Sidebar/Sidebar';
@@ -34,9 +35,16 @@ const Shop = () => {
         layout2Color = '#a749ff';
     }
     
+    // Carted product data saved  to the database
+    const { handlePost, posting, success } = usePost();
+
     return (
         <section>
             <Container>
+                {success && <Stack spacing={2} sx={{ width: '100%' }}>
+                    <Alert severity="success" sx={{fontSize: '20px', fontFamily: 'Poppins', fontWeight: 500, background: '#dbdbdb'}}>Product successfully added to cart!</Alert>
+                </Stack>
+                }
                 <Grid container spacing={2} sx={{marginTop: 3}}>
                     <Grid item md={3} xs={12} >
                         <Sidebar dpend={setDependency} dependency={dependency} />
@@ -85,7 +93,7 @@ const Shop = () => {
                         color="secondary" 
                         /> : <>
                         {gotData.length ? <>
-                        {gotData.map(data => <Card key={data._id} data={data} col={layout} />)}
+                        {gotData.map(data => <Card key={data._id} data={data} col={layout} handlePost={handlePost} posting={posting} />)}
                         </>: <div className="errorMessage">
                                 <img src={ErrImage} width='200' height='200' alt="errImage" className="errImg" />
                                 <h1 className="errMssg">No Products Matched...!</h1>

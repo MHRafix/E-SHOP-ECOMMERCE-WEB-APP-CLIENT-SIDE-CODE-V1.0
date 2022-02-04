@@ -9,20 +9,20 @@ const BreadCrumb = ({breadcrumbNavigation}) => {
             <div className="breadCrumbArea">
              <div className="breadcrumbNavigation">
                  <Breadcrumbs aria-label="breadcrumb" style={{textAlign: 'center', justifyContent: 'center'}}>
-                  <Link to='/' style={{ color: '#555', textDecoration: 'none', fontFamily: 'Poppins', fontWeight: 400, fontSize: 18 }} >
-                   {first}
+                  <Link to={`/${first.toLowerCase()}`} style={{ color: '#555', textDecoration: 'none', fontFamily: 'Poppins', fontWeight: 400, fontSize: 18 }} >
+                   {first?.toUpperCase()}
                   </Link>
-                  {middle && <Link
+                  {middle && <span
                     style={{ color: '#555', textDecoration: 'none', fontFamily: 'Poppins', fontWeight: 400, fontSize: 18 }}
                     >
-                    {middle}
-                    </Link>}
+                    {middle?.toUpperCase()}
+                    </span>}
                     <span
                     disabled={true}
                     aria-current="page"
                     style={{ color: '#000', textDecoration: 'none', fontFamily: 'Poppins', fontWeight: 400, fontSize: 18 }}
                     >
-                    {last}
+                    {last?.toUpperCase()}
                     </span>
                 </Breadcrumbs>
              </div>

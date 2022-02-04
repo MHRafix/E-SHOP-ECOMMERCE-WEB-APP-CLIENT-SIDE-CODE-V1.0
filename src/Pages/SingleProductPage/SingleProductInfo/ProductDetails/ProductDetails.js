@@ -3,22 +3,48 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { Grid, Radio, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Rating from 'react-rating';
 
-const ProductDetails = () => {
+const ProductDetails = ({productDetails}) => {
+    const [ quantity, setQuantity ] = useState(1);
+    // Let's destructuring the data from the productDetails object
+    const { productTitle, regularPrice, salePrice, ratingsandreviews, sizes, category } = productDetails;
+
+    // Asing initial size to the state
+    let initialSize;
+    if(sizes?.length){
+        initialSize = sizes[0];
+    }
+    const [ selectedSize, setSelectedSize ] = useState(initialSize);
+
+    // Let's calculat the average rating and reviews here
+    let averageRating = 0;
+    if(ratingsandreviews){
+        for(const ratAndRev of ratingsandreviews){
+        let {ratting} = ratAndRev;
+        averageRating = averageRating + ratting;
+        }
+    }
+
+    // Handle products sizes here 
+    const handleChangeSizes = (event) => {
+      setSelectedSize(event.target.value);
+    };
+    
+      
     return (
  <Grid item xs={12} md={6}>
     <div className="productDetils">
         <div className="productTitle">
                 <Typography sx={{fontSize: 24, fontWeight: 500, fontFamily: 'Poppins', color: '#010101', marginBottom: '10px'}}>
-                    Crew ventile coat one
+                    {productTitle}
                 </Typography>
             </div>
             <div className="productPrices" style={{marginBottom: '30px'}}>
-                <Typography sx={{ display: 'inline', fontSize: 24, color: '#fe5252', fontFamily: 'Poppins'}}>$30.00</Typography>
+                <Typography sx={{ display: 'inline', fontSize: 24, color: '#fe5252', fontFamily: 'Poppins'}}>${salePrice}</Typography>
                 &nbsp;&nbsp;&nbsp;
-                <Typography sx={{ display: 'inline', fontSize: 18, color: '#333', fontFamily: 'Poppins', textDecoration: 'line-through'}}>$60.00</Typography>
+                <Typography sx={{ display: 'inline', fontSize: 18, color: '#333', fontFamily: 'Poppins', textDecoration: 'line-through'}}>${regularPrice}</Typography>
             </div>
 
             <div className="rattingAndReviws" style={{display: 'flex', marginBottom: '15px'}}>
@@ -29,7 +55,7 @@ const ProductDetails = () => {
                     textAlign: 'center'
                     }}>
                     <Rating
-                    initialRating="3"
+                    initialRating={averageRating / ratingsandreviews?.length}
                     emptySymbol={<StarBorderOutlinedIcon />}
                     fullSymbol={<StarIcon />}
                     readonly
@@ -37,7 +63,7 @@ const ProductDetails = () => {
                 </span>
                 &nbsp; &nbsp; &nbsp; 
                 <span className="reviewAmount" style={{color: '#555'}}>
-                | &nbsp;  &nbsp; 55 Reviews
+                | &nbsp;  &nbsp; {ratingsandreviews?.length} Reviews
                 </span>
             </div>
 
@@ -47,26 +73,35 @@ const ProductDetails = () => {
             {/* Categories of products */}
             <h4 style={{marginBottom: '2px', color: '#444', fontWeight: 500}}>Available Sizes: </h4>
             {/* {loading ? {categoriesArr.map(category => <> */}
-            <Radio
+            {sizes?.map(size => <><Radio
                 style={{
                 margin: '0px',
                 color: 'rgb(222 77 247)', 
                 fontWeight: 500
                 }}
-                // checked={selectedCategory === category}
-                // onChange={handleChangeCategory}
-                value="category"
+                checked={selectedSize === size}
+                onChange={handleChangeSizes}
+                value={size}
                 name="radio-buttons"
-                inputProps={{ 'aria-label': "category" }}
-            />{"category.toUpperCase()"}
-            {/* </>
-            )}} */}
-            {/* <br /> <br /> */}
+                inputProps={{ 'aria-label': size }}
+            />{size.toUpperCase()}</>)}
 
             <div className="actionButtons">
-                <span className="counterBtn">-</span>
-                <span className="counterValue">2</span>
-                <span className="counterBtn">+</span>
+                <button className="counterBtn" onClick={() => {
+                    if( quantity === 1 ){
+                        alert('Minimum quantity must be 1...!');
+                    }else{
+                        setQuantity(quantity - 1);
+                    }
+                    }}>-</button>
+                <span className="counterValue">{quantity}</span>
+                <button className="counterBtn" onClick={() => {
+                    if( quantity === 100 ){
+                        alert('Maximum quantity must be 10000...!');
+                    }else{
+                        setQuantity(quantity + 1);
+                    }
+                    }}>+</button>
 
                 <button className="addToCartBtn">Add To Cart</button>
 
@@ -74,7 +109,7 @@ const ProductDetails = () => {
                 <span className="wishAndCompareBtn"><CompareArrowsIcon /></span>
             </div>
             <div className="taxonomy">
-                <span className="taxonomyItema">Category: Fashion</span>
+                <span className="taxonomyItema">Category: {category}</span>
          </div>
     </div>
 </Grid>

@@ -2,8 +2,8 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import Slider from 'react-slick';
 
-const ProductSlider = () => {
-    
+const ProductSlider = ({slidersThumbnails}) => {
+
     function SampleNextArrow(props) {
         const { className, style, onClick } = props;
         return (
@@ -27,10 +27,9 @@ const ProductSlider = () => {
       }
       
     const settings = {
-        // dots: true,
         infinite: true,
-        // autoplay: true,
-        // autoplaySpeed: 3000,
+        autoplay: true,
+        autoplaySpeed: 3000,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -40,23 +39,9 @@ const ProductSlider = () => {
     return (
         <Grid item xs={12} md={5}>
             <Slider {...settings}>
-                <div>
-                    <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src="https://flone-vue.pages.dev/img/product/fashion/1.jpg" alt="" />
-                </div>
-                <div>
-                    <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src="https://flone-vue.pages.dev/img/product/fashion/9.jpg" alt="" />
-                </div>
-                <div>
-                <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src="https://flone-vue.pages.dev/img/product/fashion/10.jpg" alt="" />
-
-                </div>
-                <div>
-                <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src="https://flone-vue.pages.dev/img/product/fashion/7.jpg" alt="" />
-
-                </div>
-                <div>
-                    <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src="https://flone-vue.pages.dev/img/product/fashion/5.jpg" alt="" />
-                </div>
+                {slidersThumbnails?.map(slide => <div style={{width: '100%', height: '500px'}}>
+                    <img style={{width: "100%", outline: "none", height: "90%", margin: "auto", zIndex: "1"}} src={slide} alt="sliderThumbnail" />
+                </div>)}
             </Slider>
       </Grid>
     );

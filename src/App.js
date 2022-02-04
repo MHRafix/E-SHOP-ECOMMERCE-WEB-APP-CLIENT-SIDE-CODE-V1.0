@@ -12,6 +12,9 @@ function App() {
          <Route exact path="/">
             <HomeMain />
          </Route>
+         <Route exact path="/home">
+            <HomeMain />
+         </Route>
          <Route exact path="/shop">
             <ShopMain />
          </Route>

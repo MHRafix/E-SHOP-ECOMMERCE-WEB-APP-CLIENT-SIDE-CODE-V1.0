@@ -32,7 +32,7 @@ body {
 .sliderWrapper {
   background: var(--slider-bg);
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   display: block;
   overflow: hidden;
 }
@@ -294,11 +294,13 @@ input.pricesField {
   align-items: center;
 }
 
-span.counterBtn {
+button.counterBtn {
   color: #555;
   cursor: pointer;
   font-size: 25px;
-  /* margin: 0px 3px; */
+  border: none;
+  padding: 3px;
+  background: transparent;
 }
 
 span.counterValue {
@@ -334,4 +336,56 @@ span.wishAndCompareBtn {
 
 span.taxonomyItema {
   color: #555;
+}
+
+@media only screen and (max-width: 768px) {
+  .sliderArticle {
+    margin-top: 30vh;
+    margin-left: 0%;
+  }
+
+  .sliderArticle h1.Headline {
+    font-size: 70px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sliderArticle h1.Headline {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sliderArticle h1.Headline {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .sliderArticle span.tagline {
+    font-size: 20px;
+  }
+
+  .sliderArticle h1.Headline {
+    font-size: 38px;
+  }
+
+  .shopBtn {
+    padding: 10px 30px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .sliderArticle span.tagline {
+    font-size: 15px;
+  }
+  .sliderArticle h1.Headline {
+    font-size: 30px;
+  }
 }

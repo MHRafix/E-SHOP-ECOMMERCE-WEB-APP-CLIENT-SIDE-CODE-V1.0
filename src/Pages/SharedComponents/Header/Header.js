@@ -1,7 +1,6 @@
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
@@ -81,6 +80,12 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+    <Box >
+      <Link to="/" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Home</Link> <br />
+      <Link to="/shop" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Shop</Link> <br />
+      {/* <Link style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Pages<KeyboardArrowDownIcon style={{ fontSize: '15px'}} /></Link> */}
+      <Link to="/contact" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Contact</Link> <br />
+</Box>
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -135,15 +140,15 @@ const Header = () => {
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ display: { xs: 'block', sm: 'block', fontSize: 30, fontWeight: 'bold', fontFamily: 'Poppins' } }}
+                sx={{ display: { xs: 'block', sm: 'block'}, fontSize: {md: 30, xs: 20}, fontWeight: 'bold', fontFamily: 'Poppins'  }}
               >
                 E-SHOP
               </Typography>
               <Box sx={{ flexGrow: 1 }} />
-              <Box>
+              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                       <Link to="/" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Home</Link>
                       <Link to="/shop" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Shop</Link>
-                      <Link style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Pages<KeyboardArrowDownIcon style={{ fontSize: '15px'}} /></Link>
+                      {/* <Link style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Pages<KeyboardArrowDownIcon style={{ fontSize: '15px'}} /></Link> */}
                       <Link to="/contact" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Contact</Link>
       
               </Box>
