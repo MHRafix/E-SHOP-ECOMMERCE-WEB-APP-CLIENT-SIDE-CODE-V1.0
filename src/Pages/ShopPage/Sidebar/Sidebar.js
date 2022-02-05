@@ -7,7 +7,7 @@ const Sidebar = ({dpend, dependency}) => {
     const [ selectedSize, setSelectedSize ] = useState('all');
     const [ minPrice, setMinPrice ] = useState('0');
     const [ maxPrice, setMaxPrice ] = useState('10000');
-    
+
     // Handle products categories here
     const handleChangeCategory = (event) => {
       if(event.target.value === 'all'){
@@ -73,7 +73,7 @@ const Sidebar = ({dpend, dependency}) => {
     return (
         <div className="sidebarArea">
             {/* Filter by price range here */}
-            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500}}>Filter by price range</h3>
+            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500, fontFamily: 'Poppins'}}>Filter by price range</h3>
             <div className="pricesSlider">
                 <input
                 onChange={(e) => setMinPrice(e.target.value)}
@@ -95,7 +95,7 @@ const Sidebar = ({dpend, dependency}) => {
                 {minPrice === '0' || maxPrice === '10000' ? <button className="priceFilterBtn2" disabled>Filter Now</button> :<button className="priceFilterBtn" onClick={handleFilterProductsByPrices}>Filter Now</button>}
             </div> <br />  <br />
             {/* Categories of products */}
-            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500}}>Categories</h3>
+            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500, fontFamily: 'Poppins'}}>Categories</h3>
             {loading ? <div style={{ textAlign: 'center'}}><CircularProgress size={24}  mt={5} color="secondary" /></div> : <>{categoriesArr.map(category => <><Radio
                 style={{
                 margin: '5px 8px',
@@ -107,10 +107,10 @@ const Sidebar = ({dpend, dependency}) => {
                 value={category}
                 name="radio-buttons"
                 inputProps={{ 'aria-label': category }}
-            />{category.toUpperCase()} CATEGORY <br /></>)}</>}
+            /> <span style={{fontFamily: 'Poppins', fontWeight: 600}}>{category.toUpperCase()} CATEGORY </span><br /></>)}</>}
             <br /> <br />
             {/* Sizes of products */}
-            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500}}>Sizes</h3>
+            <h3 style={{marginLeft: '10px', marginBottom: '5px', color: '#444', fontWeight: 500, fontFamily: 'Poppins'}}>Sizes</h3>
             {loading ? <div style={{ textAlign: 'center'}}><CircularProgress size={24}  mt={5} color="secondary" /></div> : <>{sizesArr.map(size => <><Radio
                 style={{
                 margin: '5px 8px',
@@ -122,7 +122,7 @@ const Sidebar = ({dpend, dependency}) => {
                 value={size}
                 name="radio-buttons"
                 inputProps={{ 'aria-label': size }}
-            />"{size.toUpperCase()}" SIZE<br /></>)}</>}
+            /> <span style={{fontFamily: 'Poppins', fontWeight: 600}}>"{size.toUpperCase()}" SIZE</span><br /></>)}</>}
         </div>
 
     );

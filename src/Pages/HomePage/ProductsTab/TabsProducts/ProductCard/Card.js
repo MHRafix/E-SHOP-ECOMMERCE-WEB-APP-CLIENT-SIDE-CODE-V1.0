@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import { CircularProgress, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Card = ({ data, col, handlePost, posting }) => {
   useAnimation();
 
   // Let's destucturing the product data from the data object
-  const { _id, productTitle, thumbnail, thumbnails, regularPrice, salePrice, category, sizes, ratingsandreviews
+  const { _id, productTitle, thumbnail, regularPrice, salePrice, ratingsandreviews
   } = data;
   
   // Let's calculat the average rating and reviews here
@@ -27,19 +27,14 @@ const Card = ({ data, col, handlePost, posting }) => {
 
   // Carted product data saved  to the database
   const cartedProductData = {
-    productTitle: productTitle,
-    thumbnail: thumbnail, 
-    thumbnails: thumbnails,
-    regularPrice: regularPrice, 
-    salePrice: salePrice, 
-    category: category, 
-    sizes: sizes, 
-    ratingsandreviews: ratingsandreviews,
+    cartedProduct: data,
+    size: 'M',
     quantity: 1
   };
   
     return (
-      <Grid item mb={4} xs={6} md={col} data-aos="fade-up">
+      <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
+          <div className="productCard">
             <div className="productWrapper">
               <div className="productImage">
                 {salePrice !== '0' && <span className="saleBadge">-{
@@ -48,36 +43,38 @@ const Card = ({ data, col, handlePost, posting }) => {
                   <Link to={`shop/products/singleProducts/${_id}`}><img style={{width: '100%'}} src={thumbnail} alt="productThumbnail" /></Link>
               </div>
               <div className="buttons">
-                <button className="wishAndView"><FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
+                <button className="wishAndView"
+                onClick={() => handlePost(cartedProductData, 'addToWishList')}><FavoriteBorderIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
                 <button
                 className="cartBtn"
-                onClick={() => handlePost(cartedProductData, 'addToCartList')}>{posting ? <CircularProgress  color="secondary" /> : <ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} />}</button>
+                onClick={() => handlePost(cartedProductData, 'addToCartList')}><ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
                 <button className="wishAndView"><VisibilityOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
               </div>
             </div>
-              <div className="detals" style={{ marginTop: '20px'}}>
-                <Link className="titleLink" to={`shop/products/singleProducts/${_id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
-                  {productTitle}
-                </Typography></Link>
-                <span className="rattis" style={{ color: '#ffa900', textAlign: 'center'}}>
-                <Rating
-                  initialRating={averageRating / ratingsandreviews.length}
-                  emptySymbol={<StarBorderOutlinedIcon />}
-                  fullSymbol={<StarIcon />}
-                  readonly
-                />
+            <div className="detals" style={{ marginTop: '20px'}}>
+              <Link className="titleLink" to={`shop/products/singleProducts/${_id}`}><Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', fontSize: 16, fontWeight: 400, letterSpacing: 1, marginBottom: '5px'}}>
+                {productTitle}
+              </Typography></Link>
+              <span className="rattis" style={{ color: '#ffa900', textAlign: 'center'}}>
+              <Rating
+                initialRating={averageRating / ratingsandreviews.length}
+                emptySymbol={<StarBorderOutlinedIcon />}
+                fullSymbol={<StarIcon />}
+                readonly
+              />
+              </span>
+              <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px'}}>
+                {salePrice !== '0' && <><span className="activePrice">
+                  ${salePrice} 
+                </span>&nbsp;
+                <span>-</span>&nbsp;</>}
+                <span className={salePrice !== '0' ? 'deactivePrice' : 'activePrice'}>
+                  ${regularPrice}
                 </span>
-                <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px'}}>
-                 {salePrice !== '0' && <><span className="activePrice">
-                    ${salePrice} 
-                  </span>&nbsp;
-                  <span>-</span>&nbsp;</>}
-                  <span className={salePrice !== '0' ? 'deactivePrice' : 'activePrice'}>
-                    ${regularPrice}
-                  </span>
-                </Typography>
-              </div>
-        </Grid>
+              </Typography>
+            </div>
+          </div>
+      </Grid>
     );
 };
 

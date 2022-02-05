@@ -1,12 +1,13 @@
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
-import { Alert, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
+import { Alert, CircularProgress, Container, Grid, Snackbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import useGet from '../../../CustomHooks/useGet';
 import usePost from '../../../CustomHooks/usePost';
 import ErrImage from '../../../Images/ICONS/shopingError.jpg';
 import Card from '../../HomePage/ProductsTab/TabsProducts/ProductCard/Card';
+import MobileSidebar from '../Sidebar/MobileSidebar';
 import Sidebar from '../Sidebar/Sidebar';
 
 const Shop = () => {
@@ -14,6 +15,18 @@ const Shop = () => {
     const [ dependency, setDependency ] = useState('products');
     const [ layout, setLayout ] = useState(4);
     const { loading, gotData } = useGet(dependency);
+
+    // Handle product searching here
+    const handleSearchProducts = (e) => {
+        if(e.target.value){
+            setDependency(`products/searchedProducts/${e.target.value}`);
+        }else{
+            setDependency('products');
+        }
+    }
+
+    // Carted product data saved  to the database
+    const { handlePost, posting, success, setSuccess, alertText } = usePost();
     
     // Set layout btn color
     let layout1Color = '#444';
@@ -34,33 +47,49 @@ const Shop = () => {
         layout3Color = '#444';
         layout2Color = '#a749ff';
     }
-    
-    // Carted product data saved  to the database
-    const { handlePost, posting, success } = usePost();
 
+    // Hide alert here
+    function hideAlert(){
+        setSuccess(false);
+    }
+
+    if(success){
+        setTimeout(hideAlert, 5000);
+    }
+    
     return (
         <section>
             <Container>
-                {success && <Stack spacing={2} sx={{ width: '100%' }}>
-                    <Alert severity="success" sx={{fontSize: '20px', fontFamily: 'Poppins', fontWeight: 500, background: '#dbdbdb'}}>Product successfully added to cart!</Alert>
-                </Stack>
-                }
                 <Grid container spacing={2} sx={{marginTop: 3}}>
-                    <Grid item md={3} xs={12} >
+                    <Snackbar open={success} autoHideDuration={6000}>
+                        <Alert severity="success" sx={{ width: '100%', background: 'rgb(46 125 50)', color: 'white', fontFamily: 'Poppins', fontWeight: 400, fontSize: {xs: '13px', md: '18px'}}}>
+                          {alertText}
+                        </Alert>
+                    </Snackbar>
+                    <Grid item md={3} xs={12} sx={{display: {xs: 'none', md: 'block'}}}>
                         <Sidebar dpend={setDependency} dependency={dependency} />
                     </Grid>
                     <Grid item md={9} xs={12}>
                         <div className="shopTopBar">
                             <Grid container mb={5}>
                                 <Grid item md={3} xs={12}  mb={2} sx={{display: 'flex', justifyContent: {xs: 'start', md: 'center'}, alignItems: 'center', paddingTop: '15px'}}>
-                                    <Typography
-                                    sx={{color: '#444', fontFamily: 'Poppins', fontWeight: 500, textAlign: {xs: 'left', md: 'center'},marginLeft: {xs: '10px', md: '0px'}}}
-                                    >Showing {gotData.length} products</Typography>
+                                    <Grid container sx={{alignItems: 'center'}}>
+                                        <Grid item xs={11} md={12}>
+                                            <Typography
+                                                sx={{color: '#444', fontFamily: 'Poppins', fontWeight: 500, textAlign: {xs: 'left', md: 'center'},marginLeft: {xs: '10px', md: '0px'}}}
+                                                >Showing {gotData.length} products
+                                            </Typography>
+                                            </Grid>
+                                            <Grid item xs={1} sx={{dispaly: {md: 'none', xs: 'block'}}}>
+                                                <MobileSidebar dpend={setDependency} dependency={dependency} />
+                                            </Grid>
+                                    </Grid>
                                 </Grid>
                                 <Grid item md={9} xs={12} sx={{ textAlign: 'center'}} >
                                 <Grid container>
                                     <Grid item md={10} xs={12}>
                                     <input
+                                      onChange={handleSearchProducts}
                                       type='search' 
                                       id='shopTopBarSearchInput'
                                       placeholder='Search by products name...'

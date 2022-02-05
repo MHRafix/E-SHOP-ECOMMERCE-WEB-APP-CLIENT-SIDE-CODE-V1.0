@@ -1,4 +1,4 @@
-import { Alert, CircularProgress, Grid, Stack } from '@mui/material';
+import { Alert, CircularProgress, Grid, Snackbar } from '@mui/material';
 import React from 'react';
 import useGet from '../../../../../CustomHooks/useGet';
 import usePost from '../../../../../CustomHooks/usePost';
@@ -9,14 +9,24 @@ const DiscountProducts = () => {
     const { loading, gotData } = useGet('products');
 
     // Carted product data saved  to the database
-    const { handlePost, posting, success } = usePost();
+    const { handlePost, posting, success, setSuccess, alertText } = usePost();
 
+    // Hide alert here
+    function hideAlert(){
+        setSuccess(false);
+    }
+
+    if(success){
+        setTimeout(hideAlert, 5000);
+    }
+    
     return (
         <Grid container spacing={2}>
-            {success && <Stack spacing={2} sx={{ width: '100%' }}>
-                <Alert severity="success"  sx={{fontSize: '20px', fontFamily: 'Poppins', fontWeight: 500, background: '#dbdbdb'}}>Product successfully added to cart!</Alert>
-            </Stack>
-            }
+            <Snackbar open={success} autoHideDuration={6000}>
+                <Alert severity="success" sx={{ width: '100%', background: 'rgb(46 125 50)', color: 'white', fontFamily: 'Poppins', fontWeight: 400, fontSize: {xs: '13px', md: '18px'}}}>
+                  {alertText}
+                </Alert>
+            </Snackbar>
             {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data._id} data={data} col={3} handlePost={handlePost} posting={posting} />)}</>}
         </Grid>
     );

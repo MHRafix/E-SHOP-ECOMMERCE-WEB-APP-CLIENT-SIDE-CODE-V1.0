@@ -29,13 +29,14 @@ const ProductSlider = ({slidersThumbnails}) => {
     const settings = {
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 2000,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        vertical: true,
+        verticalSwiping: true,
       };
+
     return (
         <Grid item xs={12} md={5}>
             <Slider {...settings}>

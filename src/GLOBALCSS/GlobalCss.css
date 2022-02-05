@@ -43,7 +43,7 @@ body {
 }
 
 .sliderArticle {
-  margin-top: 30vh;
+  margin-top: 40vh;
   margin-left: 3%;
 }
 
@@ -90,8 +90,9 @@ body {
 
 /* Facilities section css here */
 .facilities {
-  padding: 30px 0px;
+  padding: 50px 0px;
 }
+
 .facilityWrapper:hover img.facilityIcon {
   box-shadow: var(--box-shadow-inset);
   animation: pop 0.5s linear 2;
@@ -165,7 +166,7 @@ button.cartBtn:hover {
   display: none;
 }
 
-.productWrapper:hover .buttons {
+.productCard:hover .buttons {
   display: block;
   animation: fadein 0.3s ease-in;
 }
@@ -197,6 +198,7 @@ span.saleBadge {
   left: 5px;
   top: 10px;
   border-radius: 3px;
+  font-family: "Poppins";
 }
 
 a.titleLink {
@@ -257,7 +259,7 @@ button.priceFilterBtn {
   font-family: "Poppins";
   letter-spacing: 1px;
   border-radius: 41px;
-  font-weight: 300;
+  font-weight: 500;
   cursor: pointer;
   margin-top: 10px;
 }
@@ -271,7 +273,7 @@ button.priceFilterBtn2 {
   font-family: "Poppins";
   letter-spacing: 1px;
   border-radius: 41px;
-  font-weight: 300;
+  font-weight: 500;
   margin-top: 10px;
 }
 
@@ -332,6 +334,11 @@ span.wishAndCompareBtn {
   margin: 0px 10px;
   font-size: 25px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+span.wishAndCompareBtn:hover {
+  color: var(--btn-bg);
 }
 
 span.taxonomyItema {
@@ -379,12 +386,19 @@ span.taxonomyItema {
   .shopBtn {
     padding: 10px 30px;
   }
+
+  button.addToCartBtn {
+    margin: 0px 10px;
+    width: 115px;
+    font-size: 15px;
+  }
 }
 
 @media only screen and (max-width: 375px) {
   .sliderArticle span.tagline {
     font-size: 15px;
   }
+
   .sliderArticle h1.Headline {
     font-size: 30px;
   }

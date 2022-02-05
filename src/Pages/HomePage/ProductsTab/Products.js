@@ -28,11 +28,11 @@ const Products = () => {
                     <Box sx={{ width: '100%' }} mt={2}>
                       <TabContext value={value}>
                         <div className="tabs" style={{ width: '100%', margin: 'auto', textAlign: 'center'}}>
-                            <Box style={{ display:'flex', justifyContent: 'center', textAlign: 'center'}} >
+                            <Box sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center'}} >
                                 <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                <Tab sx={{ fontSize: 15, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="New Arrival" value="1" />
-                                <Tab sx={{ fontSize: 15, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="Basic Products" value="2" />
-                                <Tab sx={{ fontSize: 15, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="Sale Products" value="3" />
+                                <Tab sx={{ fontSize: {xs: 11, md: 15}, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="New Arrival" value="1" />
+                                <Tab sx={{ fontSize: {xs: 11, md: 15}, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="Basic Products" value="2" />
+                                <Tab sx={{ fontSize: {xs: 11, md: 15}, fontWeight: 400, fontFamily: 'Poppins' }} typography="h3" label="Sale Products" value="3" />
                                 </TabList>
                             </Box>
                         </div>
