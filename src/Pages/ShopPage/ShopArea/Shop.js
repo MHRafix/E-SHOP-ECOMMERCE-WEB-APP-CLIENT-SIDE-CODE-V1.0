@@ -5,6 +5,7 @@ import { Alert, CircularProgress, Container, Grid, Snackbar, Typography } from '
 import React, { useState } from 'react';
 import useGet from '../../../CustomHooks/useGet';
 import usePost from '../../../CustomHooks/usePost';
+import GifLoader from '../../../Images/ICONS/loadingGif.gif';
 import ErrImage from '../../../Images/ICONS/shopingError.jpg';
 import Card from '../../HomePage/ProductsTab/TabsProducts/ProductCard/Card';
 import MobileSidebar from '../Sidebar/MobileSidebar';
@@ -122,16 +123,20 @@ const Shop = () => {
                         color="secondary" 
                         /> : <>
                         {gotData.length ? <>
-                        {gotData.map(data => <Card key={data._id} data={data} col={layout} handlePost={handlePost} posting={posting} />)}
+                        {gotData.map(data => <Card key={data._id} data={data} col={layout} handlePost={handlePost} />)}
                         </>: <div className="errorMessage">
                                 <img src={ErrImage} width='200' height='200' alt="errImage" className="errImg" />
                                 <h1 className="errMssg">No Products Matched...!</h1>
                             </div>}
                         </>}
                       </Grid>
+                      {posting && <div className="gifLoader3">
+                          <img className="gif" src={GifLoader} alt="loader" />
+                        </div>
+                      }
                     </Grid>
                 </Grid>
-            </Container>
+            </Container>                    
         </section>
     );
 };

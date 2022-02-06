@@ -3,7 +3,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
+import ScrollingCartList from './ScrollingCartList';
 import WishListBtn from './WishListBtn';
 
 const Header = () => {
@@ -133,10 +134,12 @@ const Header = () => {
 
   // Import data from custom hooks
   const { gotData } = useGet('getFromCartList');
+
+  const [ scrollingCartList, setScrollingCartList ] = useState(false);
   return (
     <Box >
        <ThemeProvider theme={whiteTheme}>
-          <AppBar position="static">
+          <AppBar position="fixed">
           <Container>
             <Toolbar sx={{padding: '0px!important'}}>
               <Typography
@@ -149,14 +152,24 @@ const Header = () => {
               </Typography>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                      <Link to="/" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Home</Link>
-                      <Link to="/shop" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Shop</Link>
+                      <Link to="/" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer', fontFamily: 'Poppins'}}>Home</Link>
+                      <Link to="/shop" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer', fontFamily: 'Poppins'}}>Shop</Link>
                       {/* <Link style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Pages<KeyboardArrowDownIcon style={{ fontSize: '15px'}} /></Link> */}
-                      <Link to="/contact" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer'}}>Contact</Link>
-      
+                      <Link to="/contact" style={{ color: '#555252', textDecoration: 'none', margin: '0px 15px', fontWeight: '500', fontSize: '15px', cursor: 'pointer', fontFamily: 'Poppins'}}>Contact</Link>
               </Box>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    sx={{ color: 'text.disabled' }}
+                    >
+                    <AccountCircleOutlinedIcon />
+                  </IconButton>
                 <Link to="/wishlist">
                 <IconButton
                     size="large"
@@ -170,21 +183,17 @@ const Header = () => {
                     size="large"
                     aria-label="show 17 new notifications"
                     sx={{ color: 'text.disabled' }}
+                    onClick={() => {
+                      if(scrollingCartList === false){
+                        setScrollingCartList(true);
+                      }else{
+                        setScrollingCartList(false);
+                      }
+                      }}
                     >
                     <Badge badgeContent={gotData.length} color="secondary">
                         <ShoppingBagOutlinedIcon />
                     </Badge>
-                    </IconButton>
-                    <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    sx={{ color: 'text.disabled' }}
-                    >
-                    <AccountCircleOutlinedIcon />
                     </IconButton>
               </Box>
               <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -205,6 +214,9 @@ const Header = () => {
         </ThemeProvider>
         {renderMobileMenu}
         {renderMenu}
+        <Grid>
+          {scrollingCartList && <ScrollingCartList cartProductsList={gotData}/>}
+        </Grid>
     </Box>
   );
 }

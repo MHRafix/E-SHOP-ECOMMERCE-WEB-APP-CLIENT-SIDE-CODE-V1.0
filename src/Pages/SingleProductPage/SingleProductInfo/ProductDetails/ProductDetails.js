@@ -6,7 +6,7 @@ import { Grid, Radio, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Rating from 'react-rating';
 
-const ProductDetails = ({productDetails, handlePost, posting}) => {
+const ProductDetails = ({productDetails, handlePost}) => {
     const [ quantity, setQuantity ] = useState(1);
     // Let's destructuring the data from the productDetails object
     const { productTitle, regularPrice, salePrice, ratingsandreviews, sizes, category } = productDetails;

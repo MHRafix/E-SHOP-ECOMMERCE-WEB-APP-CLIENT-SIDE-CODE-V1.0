@@ -2,6 +2,7 @@ import { Alert, CircularProgress, Grid, Snackbar } from '@mui/material';
 import React from 'react';
 import useGet from '../../../../../CustomHooks/useGet';
 import usePost from '../../../../../CustomHooks/usePost';
+import GifLoader from '../../../../../Images/ICONS/loadingGif.gif';
 import Card from '../ProductCard/Card';
 
 const NewProducts = () => {
@@ -26,7 +27,11 @@ const NewProducts = () => {
                     {alertText}
                 </Alert>
             </Snackbar>
-            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data._id} data={data} col={3} handlePost={handlePost} posting={posting} />)}</>}
+            {loading ? <CircularProgress sx={{ textAlign: 'center', margin: 'auto'}} mt={3} color="secondary" /> : <>{gotData.map(data => <Card key={data._id} data={data} col={3} handlePost={handlePost} />)}</>}
+                {posting && <div className="gifLoader2">
+                 <img className="gif" src={GifLoader} alt="loader" />
+                </div>
+                }
         </Grid>
     );
 };

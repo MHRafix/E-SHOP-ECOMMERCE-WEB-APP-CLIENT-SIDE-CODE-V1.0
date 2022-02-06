@@ -4,10 +4,19 @@ import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
 import ErrImage from '../../../Images/ICONS/wishlistIcon.png';
 import WishListTable from './WishListTable';
+import CartIcon from '../../../Images/ICONS/cartIcon.png';
 
 const WishList = () => {
+    const presentPath = window.location.pathname;
+    let getUrl;
+    if(presentPath === '/wishlist'){
+        getUrl = 'getFromWishList';
+    }else{
+        getUrl = 'getFromCartList';
+    };
+    
     // Import data from custom hooks
-    const { loading, gotData } = useGet('getFromWishList');
+    const { loading, gotData } = useGet(getUrl);
     return (
         <section>
             <div className="wishListWrapper">
@@ -21,21 +30,23 @@ const WishList = () => {
                         /></div> : <Container>
                     {gotData.length ? <><div className="heading">
                         <Typography sx={{ fontSize: 25, fontWeight: 500, fontFamily: 'Poppins'}}>
-                            Your wishlist items
+                            Your {presentPath === '/wishlist' ? 'wishlist' : 'cart'} items
                         </Typography>
                     </div> <br />
                     
                     <Grid container sx={{alignItems: 'center'}}>
-                        <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 18}}}>{'image'.toUpperCase()}</Grid>
-                        <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 18}}}>{'product name'.toUpperCase()}</Grid>
-                        <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 18}}}>{'unit price'.toUpperCase()}</Grid>
-                        <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 18}}}>{'add to cart'.toUpperCase()}</Grid>
-                        <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 18}}}>{'Action'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'image'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'product name'.toUpperCase()}</Grid>
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'unit price'.toUpperCase()}</Grid>
+                        {presentPath === '/wishlist' && <Grid item xs={2.4} md={2.4} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'add to cart'.toUpperCase()}</Grid>}
+                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'Quantity'.toUpperCase()}</Grid>}
+                        {presentPath === '/cartlist' && <Grid item xs={2} md={2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'sub total'.toUpperCase()}</Grid>}
+                        <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontFamily: 'Poppins', fontSize: {xs: 10, md: 16}}}>{'Action'.toUpperCase()}</Grid>
                     </Grid>
                     {gotData.map(data => <WishListTable data={data} />)}
                   </> : <div className="errorMessage" style={{textAlign: 'center'}}>
-                            <img src={ErrImage} style={{width: '30%', height: '100%', margin: 'auto'}} alt="errImage"/>
-                            <h1 className="errMssg">No items found in wishlist...!</h1> <br />
+                            <img src={presentPath === '/wishlist' ? ErrImage : CartIcon} style={{width: '30%', height: '100%', margin: 'auto'}} alt="errImage"/>
+                            <h1 className="errMssg">No items found in {presentPath === '/wishlist' ? 'wishlist' : 'cartlist'}...!</h1> <br />
                             <Link to='/shop' style={{textDecoration: 'none', fontFamily: 'Poppins', background: 'var(--btn-bg)', color: '#fff', padding: '10px 30px', marginTop: '20px'}}>Add Items</Link>
                         </div>}
                 </Container>}

@@ -1,6 +1,7 @@
 import { Alert, Container, Grid, Snackbar } from '@mui/material';
 import React from 'react';
 import usePost from '../../../CustomHooks/usePost';
+import GifLoader from '../../../Images/ICONS/loadingGif.gif';
 import BreadCrumb from '../../SharedComponents/BreadCrumb/BreadCrumb';
 import ProductDetails from './ProductDetails/ProductDetails';
 import ProductSlider from './ProductSlider.js/ProductSlider';
@@ -38,9 +39,13 @@ const SingleInfo = (props) => {
                     <ProductSlider key="4" slidersThumbnails={thumbnails} />
                     
                     {/* Single product detaild here  */}
-                    <ProductDetails key="1" productDetails={product}handlePost={handlePost} posting={posting} />
+                    <ProductDetails key="1" productDetails={product} handlePost={handlePost} />
                 </Grid>
               </Container>
+                {posting && <div className="gifLoader">
+                <img className="gif" src={GifLoader} alt="loader" />
+                </div>
+                }
             </section>
         </section>
     );

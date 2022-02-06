@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const BreadCrumb = ({breadcrumbNavigation}) => {
     const { first, middle, last } = breadcrumbNavigation;
     return (
-        <section>
+        <section style={{marginTop: '67px'}}>
             <div className="breadCrumbArea">
              <div className="breadcrumbNavigation">
                  <Breadcrumbs aria-label="breadcrumb" sx={{textAlign: 'center', justifyContent: 'center', padding: {xs: '0px 10px', md: '0px'}}}>

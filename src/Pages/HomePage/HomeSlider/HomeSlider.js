@@ -30,7 +30,7 @@ const HomeSlider = () => {
     }
 
     return (
-        <div className="sliderWrapper">
+        <div className="sliderWrapper" style={{marginTop: '65px'}}>
             <Container>
                 <div className="sliderDetails">
                     <div className="controller" onClick={sliderControll}>

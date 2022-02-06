@@ -4,11 +4,15 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 import useAnimation from '../../../../../CustomHooks/useAnimation';
-const Card = ({ data, col, handlePost, posting }) => {
+import ProductQuickView from '../../../../SharedComponents/Modals/ProductQuickView';
+
+const Card = ({ data, col, handlePost }) => {
+  const [ quickView, setQuickView ] = useState(false);
+
   // Import animation here
   useAnimation();
 
@@ -47,7 +51,7 @@ const Card = ({ data, col, handlePost, posting }) => {
                 <button
                 className="cartBtn"
                 onClick={() => handlePost(cartedProductData, 'addToCartList')}><ShoppingCartOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
-                <button className="wishAndView"><VisibilityOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
+                <button className="wishAndView" onClick={() => setQuickView(true)}><VisibilityOutlinedIcon sx={{ fontSize: 20, paddingTop: '5px'}} /></button>
               </div>
             </div>
             <div className="detals" style={{ marginTop: '20px'}}>
@@ -73,6 +77,7 @@ const Card = ({ data, col, handlePost, posting }) => {
               </Typography>
             </div>
           </div>
+           <ProductQuickView open={quickView} data={data} setOpen={setQuickView} />
       </Grid>
     );
 };

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './GLOBALCSS/GlobalCss.css';
+import CartListMain from './Pages/CartListPage/CartListMain';
 import HomeMain from './Pages/HomePage/HomeMain';
 import ShopMain from './Pages/ShopPage/ShopMain';
 import SingleProductMain from './Pages/SingleProductPage/SingleProductMain';
@@ -21,6 +22,9 @@ function App() {
          </Route>
          <Route exact path="/wishlist">
             <WishListMain />
+         </Route>
+         <Route exact path="/cartlist">
+            <CartListMain />
          </Route>
          <Route exact path="/shop/products/singleProducts/:productId">
             <SingleProductMain />
