@@ -3,6 +3,7 @@ import './GLOBALCSS/GlobalCss.css';
 import HomeMain from './Pages/HomePage/HomeMain';
 import ShopMain from './Pages/ShopPage/ShopMain';
 import SingleProductMain from './Pages/SingleProductPage/SingleProductMain';
+import WishListMain from './Pages/WishListPage/WishListMain';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
          </Route>
          <Route exact path="/shop">
             <ShopMain />
+         </Route>
+         <Route exact path="/wishlist">
+            <WishListMain />
          </Route>
          <Route exact path="/shop/products/singleProducts/:productId">
             <SingleProductMain />

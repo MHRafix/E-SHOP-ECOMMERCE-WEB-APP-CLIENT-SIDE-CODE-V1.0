@@ -31,7 +31,6 @@ const Card = ({ data, col, handlePost, posting }) => {
     size: 'M',
     quantity: 1
   };
-  
     return (
       <Grid item mb={4} xs={12} md={col} data-aos="fade-up">
           <div className="productCard">

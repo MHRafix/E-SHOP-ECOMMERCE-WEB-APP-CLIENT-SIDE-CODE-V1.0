@@ -1,6 +1,5 @@
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
@@ -16,6 +15,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useGet from '../../../CustomHooks/useGet';
+import WishListBtn from './WishListBtn';
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -130,6 +131,8 @@ const Header = () => {
     },
   });
 
+  // Import data from custom hooks
+  const { gotData } = useGet('getFromCartList');
   return (
     <Box >
        <ThemeProvider theme={whiteTheme}>
@@ -155,10 +158,12 @@ const Header = () => {
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
                 <Link to="/wishlist">
-                    <IconButton size="large" aria-label="show 4 new mails" sx={{ color: 'text.disabled' }}>
-                    <Badge badgeContent={1} color="secondary">
-                        <FavoriteBorderOutlinedIcon />
-                    </Badge>
+                <IconButton
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    sx={{ color: 'text.disabled' }}
+                    >
+                    <WishListBtn />
                     </IconButton>
                 </Link>
                     <IconButton
@@ -166,7 +171,7 @@ const Header = () => {
                     aria-label="show 17 new notifications"
                     sx={{ color: 'text.disabled' }}
                     >
-                    <Badge badgeContent={1} color="secondary">
+                    <Badge badgeContent={gotData.length} color="secondary">
                         <ShoppingBagOutlinedIcon />
                     </Badge>
                     </IconButton>

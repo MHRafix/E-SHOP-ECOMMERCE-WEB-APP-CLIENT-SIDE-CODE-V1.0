@@ -1,20 +1,21 @@
 import React from 'react';
 import BreadCrumb from '../SharedComponents/BreadCrumb/BreadCrumb';
 import Header from '../SharedComponents/Header/Header';
-import Shop from './ShopArea/Shop';
+import WishList from './WishListProducts/WishList';
 
-const ShopMain = () => {
+const WishListMain = () => {
     const navigation = {
         first: 'home',
-        last: 'Shop'
+        last: 'WISHLIST'
     };
     return (
         <>
         <Header />
          <BreadCrumb breadcrumbNavigation={navigation} />
-         <Shop />
+         <br /><br />
+         <WishList />
         </>
     );
 };
 
-export default ShopMain;
+export default WishListMain;

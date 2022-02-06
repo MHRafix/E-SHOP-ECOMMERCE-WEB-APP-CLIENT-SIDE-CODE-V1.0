@@ -151,11 +151,26 @@ button.cartBtn {
   transition: 0.3s;
 }
 
+button.wishListCartBtn {
+  background: var(--btn-bg);
+  color: var(--white-color);
+  width: 80%;
+  font-size: 17px;
+  border-radius: 100px;
+  height: 45px;
+  border: none;
+  border-left: 1px solid rgb(207, 207, 207);
+  border-right: 1px solid rgb(207, 207, 207);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 button.wishAndView:hover {
   background: var(--black-color);
 }
 
-button.cartBtn:hover {
+button.cartBtn,
+.wishListCartBtn:hover {
   background: var(--black-color);
 }
 
@@ -345,6 +360,28 @@ span.taxonomyItema {
   color: #555;
 }
 
+span.crossBtn {
+  color: rgb(0 0 0);
+  padding: 0px 10px;
+  border-radius: 100px;
+  font-size: 30px;
+  background: var(--btn-bg);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+span.crossBtn:hover {
+  color: var(--white-color);
+  background: #4b0657;
+}
+
+img.wishListProductimage {
+  width: 200px;
+  height: 250px;
+}
+
+/* Respomsive css here */
+
 @media only screen and (max-width: 768px) {
   .sliderArticle {
     margin-top: 30vh;
@@ -355,6 +392,11 @@ span.taxonomyItema {
     font-size: 70px;
     font-weight: 500;
     margin-bottom: 25px;
+  }
+
+  img.wishListProductimage {
+    width: 120px;
+    height: 120px;
   }
 }
 

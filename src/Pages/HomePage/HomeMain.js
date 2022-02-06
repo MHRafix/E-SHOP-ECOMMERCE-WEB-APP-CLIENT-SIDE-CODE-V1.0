@@ -7,7 +7,7 @@ import Products from './ProductsTab/Products';
 const HomeMain = () => {
     return (
         <>
-         <Header />
+        <Header />
          <HomeSlider />
          <Facilities />
          <br /><br />
