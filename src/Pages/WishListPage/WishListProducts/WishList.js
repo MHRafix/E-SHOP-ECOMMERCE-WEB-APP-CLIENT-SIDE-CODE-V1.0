@@ -2,9 +2,10 @@ import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useGet from '../../../CustomHooks/useGet';
-import ErrImage from '../../../Images/ICONS/wishlistIcon.png';
-import WishListTable from './WishListTable';
 import CartIcon from '../../../Images/ICONS/cartIcon.png';
+import ErrImage from '../../../Images/ICONS/wishlistIcon.png';
+import CartTotalCard from '../../CartListPage/CartTotalCard';
+import WishListTable from './WishListTable';
 
 const WishList = () => {
     const presentPath = window.location.pathname;
@@ -49,6 +50,7 @@ const WishList = () => {
                             <h1 className="errMssg">No items found in {presentPath === '/wishlist' ? 'wishlist' : 'cartlist'}...!</h1> <br />
                             <Link to='/shop' style={{textDecoration: 'none', fontFamily: 'Poppins', background: 'var(--btn-bg)', color: '#fff', padding: '10px 30px', marginTop: '20px'}}>Add Items</Link>
                         </div>}
+                        <CartTotalCard />
                 </Container>}
             </div>
         </section>

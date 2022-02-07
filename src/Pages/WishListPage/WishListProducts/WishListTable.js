@@ -6,8 +6,9 @@ import GifLoader from '../../../Images/ICONS/loadingGif.gif';
 
 const WishListTable = ({data}) => {
     const presentPath = window.location.pathname;
-    const [quantity, setQuantity] = useState(1);
     const {thumbnail, productTitle, salePrice, regularPrice} = data.cartedProduct;
+    let productQuantity = data.quantity;
+    const [quantity, setQuantity] = useState(Number(productQuantity));
 
     // Move wishList product to cart list
     const { posting, handlePost, success, setSuccess, alertText } = usePost();
@@ -28,18 +29,18 @@ const WishListTable = ({data}) => {
     
     return (
         <Grid container sx={{alignItems: 'center'}}>
-            <Snackbar open={success} autoHideDuration={6000}>
-                <Alert severity="success" sx={{ width: '100%', background: 'rgb(46 125 50)', color: 'white', fontFamily: 'Poppins', fontWeight: 400, fontSize: {xs: '13px', md: '18px'}}}>
-                    {alertText}
-                </Alert>
-            </Snackbar>
+                <Snackbar open={success} autoHideDuration={6000}>
+                    <Alert severity="success" sx={{ width: '100%', background: 'rgb(46 125 50)', color: 'white', fontFamily: 'Poppins', fontWeight: 400, fontSize: {xs: '13px', md: '18px'}}}>
+                        {alertText}
+                    </Alert>
+                </Snackbar>
             <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555'}}>  <img className="wishListProductimage" src={thumbnail} alt="wishListProduct" />
             </Grid>
             <Grid item md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555', fontSize: {xs: 11, md: 18}, display: 'block'}}>{productTitle}</Grid>
             {presentPath === '/wishlist' && <Grid item xs={presentPath === '/wishlist' ? 2.4 : 2} md={presentPath === '/wishlist' ? 2.4 : 2} sx={{textAlign: 'center', color: '#555'}}>
                 <Typography sx={{ fontFamily: 'Poppins', textAlign: 'center', marginTop: '5px', fontSize: {xs: 10, md: 18}}}>
                     {salePrice !== '0' && <><span className="activePrice">
-                    ${salePrice} 
+                    ${salePrice}
                     </span>&nbsp;
                     <span>-</span>&nbsp;</>}
                     <span className={salePrice !== '0' ? 'deactivePrice' : 'activePrice'}>
