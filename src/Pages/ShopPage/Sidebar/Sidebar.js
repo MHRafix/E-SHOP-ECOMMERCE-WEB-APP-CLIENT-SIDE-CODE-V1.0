@@ -2,7 +2,7 @@ import { CircularProgress } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import React, { useState } from 'react';
 import useGet from '../../../CustomHooks/useGet';
-const Sidebar = ({dpend, dependency}) => {
+const Sidebar = ({dpend}) => {
     const [ selectedCategory, setSelectedCategory ] = useState('all');
     const [ selectedSize, setSelectedSize ] = useState('all');
     const [ minPrice, setMinPrice ] = useState('0');
@@ -34,9 +34,11 @@ const Sidebar = ({dpend, dependency}) => {
     
     // Get data from the server
     const { loading, gotData } = useGet('products');
+    console.log(gotData);
     
     // Findout all categories
     let categoriesArr = ['all'];
+    if(gotData){
     for(const data of gotData){
         if(categoriesArr.includes(data.category) === true){
             //Nothing here
@@ -44,10 +46,12 @@ const Sidebar = ({dpend, dependency}) => {
             categoriesArr.push(data.category);
         }
     }
-
+}
     // Findout all sizes here
     let sizesArr = ['all'];
+    if(gotData){
     for(const data of gotData){
+        console.log(data.sizes);
         const sizes = data.sizes;
         for(const size of sizes){
             if(sizesArr.includes(size) === true){
@@ -57,7 +61,7 @@ const Sidebar = ({dpend, dependency}) => {
             }
         }
     }
-
+    }
     // Handle filter products by prices
     const handleFilterProductsByPrices = () => {
         if(!minPrice || !maxPrice){

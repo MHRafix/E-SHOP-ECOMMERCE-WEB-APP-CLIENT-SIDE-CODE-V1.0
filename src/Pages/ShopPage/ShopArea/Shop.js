@@ -68,7 +68,7 @@ const Shop = () => {
                         </Alert>
                     </Snackbar>
                     <Grid item md={3} xs={12} sx={{display: {xs: 'none', md: 'block'}}}>
-                        <Sidebar dpend={setDependency} dependency={dependency} />
+                        <Sidebar dpend={setDependency} />
                     </Grid>
                     <Grid item md={9} xs={12}>
                         <div className="shopTopBar">
